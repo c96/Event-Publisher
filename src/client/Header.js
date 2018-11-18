@@ -60,19 +60,19 @@ function Header(props) {
     <header>
       <img src={Logo} alt="Eventmonkey Logo"/>;
       <nav>
-        <Button variant="contained" color="secondary" className={classes.button} component={NavLink} to="/">
+        {/*<Button variant="contained" color="primary" className={classes.button} component={NavLink} to="/">
           Home
           <HomeIcon className={classes.rightIcon} />
-        </Button>
+  </Button>*/}
         <Button variant="contained" color="primary" className={classes.button} component={NavLink} to="/create-event">
           Create an Event
           <EventIcon className={classes.rightIcon} />
         </Button>
-        <Button variant="contained" color="default" className={classes.button} component={NavLink} to="/upload-video">
+        <Button variant="contained" color="secondary" className={classes.button} component={NavLink} to="/upload-video">
           Upload a Video
           <CloudUploadIcon className={classes.rightIcon} />
         </Button>
-        <Button variant="contained" disabled color="secondary" className={classes.button} component={NavLink} to="/dashboard">
+        <Button variant="contained" color="secondary" className={classes.button} component={NavLink} to="/dashboard">
           <DashboardIcon className={classes.leftIcon} />
           View Dashboard
         </Button>
