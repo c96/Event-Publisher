@@ -1,4 +1,4 @@
-## React Event Bucket Publisher API Tests
+## Event Publisher
 
 Various tests of cloud storage, API usage, etc. for event publisher app
 
@@ -6,13 +6,13 @@ To run:
 
 Step 1: set environment variable in Terminal or Command Prompt 
 
-    set GOOGLE_APPLICATION_CREDENTIALS=path/to/repo/cloud-api-testing/testing_keys/service-key.json
+    set GOOGLE_APPLICATION_CREDENTIALS=path/to/repo/testing_keys/service-key.json
 
-Step 2: in react-upload, enter the following
+Step 2: enter the following
 
     npm install
 
-    npm run build
+    npm run-script bundle
 
     npm start
 
