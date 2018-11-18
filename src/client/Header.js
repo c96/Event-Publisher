@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../../public/logo-via-logohub.png';
+
 
 const Header = () => (
   <header>
+    <img src={Logo} alt="Eventmonkey Logo"/>;
     <nav>
       <ul>
         <li><Link to='/'>Home</Link></li>
