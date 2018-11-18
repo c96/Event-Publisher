@@ -1,7 +1,7 @@
 {
-  "name": "event-publisher",
+  "name": "Event-Publisher",
   "version": "1.0.0",
-  "description": "Event publisher with react frontend, express backend, webpack compilation, babel loading",
+  "description": "Event publisher with react frontend, express backend. Webpack compilation and babel loading. Material-ui interface. Uses YouTube, Google Maps, Facebook Graph APIs.",
   "main": "src/server/server.js",
   "scripts": {
     "build": "webpack --mode production",
@@ -11,6 +11,10 @@
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Collin Christensen",
+  "contributors": [
+    "Darcy Hughes",
+    "Ryan Koda"
+  ],
   "license": "ISC",
   "dependencies": {
     "@date-io/date-fns": "0.0.2",

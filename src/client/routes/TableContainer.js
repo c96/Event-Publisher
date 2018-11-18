@@ -1,5 +1,5 @@
 /*
-* Name: Darcy Hughes
+* Contributors: Darcy Hughes, Collin Christensen
 * Group: CSE 486 Capstone GoDaddy
 * File: TableContainer.js
 * Desc: This file contains all elements to build and populate
@@ -21,7 +21,11 @@ class TableContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: []
+      events: [
+        { Title: 'test name 1', Location: 'test', Date: 'test' },
+        { Title: 'test name 2', Location: 'test', Date: 'test' },
+        { Title: 'test name 3', Location: 'test', Date: 'test' }
+      ]
     };
   }
 
@@ -56,33 +60,36 @@ class TableContainer extends Component {
 
   // Test
   testMessage(e) {
-    console.log('Button confirmed');
+    console.log('Delete Button Pressed');
   }
 
   render() {
     return (
       <Table id="event-table">
-            <TableHead>
-              <TableRow>
-                  <TableCell>Event Title</TableCell>
-                  <TableCell location>Location</TableCell>
-                  <TableCell date>Date</TableCell>
-                  <TableCell />
-                </TableRow>
-            </TableHead>
-            <TableBody>
-              {this.state.events.map(event => (
-                  <TableRow id={event.Id}>
-                  <TableCell>{event.Title}</TableCell>
-                  <TableCell>{JSON.stringify(event.Location)}</TableCell>
-                  <TableCell>{event.Date}</TableCell>
-                  <TableCell>
-                      <IconButton onClick={() => { this.deleteEvent(event.Id); }}><DeleteIcon /></IconButton>
-                    </TableCell>
-                </TableRow>
-                ))}
-            </TableBody>
-          </Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Event Title</TableCell>
+            <TableCell location>Location</TableCell>
+            <TableCell date>Date</TableCell>
+            <TableCell />
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {this.state.events.map(event => (
+            <TableRow id={event.Id}>
+              <TableCell>{event.Title}</TableCell>
+              <TableCell>{JSON.stringify(event.Location)}</TableCell>
+              <TableCell>{event.Date}</TableCell>
+              <TableCell>
+                {
+                  // <IconButton onClick={() => { this.deleteEvent(event.Id); }}><DeleteIcon /></IconButton>
+                }
+                <IconButton onClick={() => { this.testMessage(event.Id); }}><DeleteIcon /></IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     );
   }
 }
