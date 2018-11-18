@@ -73,8 +73,8 @@ function Header(props) {
           <CloudUploadIcon className={classes.rightIcon} />
         </Button>
         <Button variant="contained" color="secondary" className={classes.button} component={NavLink} to="/dashboard">
-          <DashboardIcon className={classes.leftIcon} />
           View Dashboard
+          <DashboardIcon className={classes.rightIcon} />
         </Button>
       </nav>
   </header>
