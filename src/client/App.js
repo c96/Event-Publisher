@@ -1,13 +1,18 @@
 import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 import Header from './Header';
 import Main from './Main';
-// import './app.css';
+//import './styles/app.css';
 
 const App = () => (
-  <div>
-    <Header />
-    <Main />
-  </div>
+  <React.Fragment>
+    <CssBaseline />
+    <div>
+      <Header />
+      <Main />
+    </div>
+  </React.Fragment>
 );
 
 export default App;

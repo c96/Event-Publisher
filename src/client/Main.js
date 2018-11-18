@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from './Home';
-import EventPublish from './EventPublish';
-import Dashboard from './Dashboard';
+import Home from './routes/Home';
+import CreateEvent from './routes/CreateEvent';
+import Dashboard from './routes/Dashboard';
+import UploadVideo from './routes/UploadVideo';
 
 // Renders other components
 const Main = () => (
   <main>
     <Switch>
       <Route exact path='/' component={Home}/>
-      <Route path='/eventpublish' component={EventPublish}/>
+      <Route path='/create-event' component={CreateEvent}/>
       <Route path='/dashboard' component={Dashboard}/>
+      <Route path='/upload-video' component={UploadVideo}/>
     </Switch>
   </main>
 );
