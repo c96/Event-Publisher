@@ -1,8 +1,17 @@
 const express = require('express');
-const os = require('os');
+const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
 
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '')));
+
 app.use(express.static('dist'));
-app.get('/api/getUsername', (req, res) => res.send({ username: os.userInfo().username }));
-app.listen(8080, () => console.log('Listening on port 8080!'));
+app.get('/api/getUsername', (req, res) => res.send({ username: 'testvalue' }));
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+  console.log('Press Ctrl+C to quit.');
+});

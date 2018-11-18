@@ -16,10 +16,10 @@ runtime: nodejs8
 
 #handlers:
 # - url: /
-#   static_files: build/bundle.js
-#   upload: build/bundle.js
+#   static_files: dist/bundle.js
+#   upload: dist/bundle.js
 # - url: /
-#   static_dir: built
+#   static_dir: dist
 
 env_variables:
   GCLOUD_STORAGE_BUCKET: eventpub-bucket
