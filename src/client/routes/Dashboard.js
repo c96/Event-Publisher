@@ -1,15 +1,27 @@
-import React from 'react';
+/*
+* Name: Darcy Hughes
+* Group: CSE 486 Capstone GoDaddy
+* File: Dashboard* Desc: This file assembles all other components into a page to be displayed.
+ */
 
-const Dashboard = () => (
-  <React.Fragment>
-    <div>
-      <ul>
-        <li>Event aaa1</li>
-        <li> aaaaaaa2</li>
-        <li>Event aaa3</li>
-      </ul>
-    </div>
-  </React.Fragment>
-);
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import Paper from '@material-ui/core/Paper';
+import TableContainer from './TableContainer';
 
+class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+          <div>
+            <Paper>
+              <TableContainer />
+            </Paper>
+          </div>
+    );
+  }
+}
 export default Dashboard;

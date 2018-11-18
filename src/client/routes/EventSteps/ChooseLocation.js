@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-function PaymentForm() {
+function ChooseLocation() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -41,4 +41,4 @@ function PaymentForm() {
   );
 }
 
-export default PaymentForm;
+export default ChooseLocation;

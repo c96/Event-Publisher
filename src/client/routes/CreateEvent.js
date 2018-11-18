@@ -10,7 +10,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import EventForm from './EventSteps/EventForm';
-import PaymentForm from './EventSteps/PaymentForm';
+import PaymentForm from './EventSteps/ChooseLocation';
 import Review from './EventSteps/Review';
 
 const styles = theme => ({

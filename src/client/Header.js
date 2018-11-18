@@ -64,11 +64,15 @@ function Header(props) {
           Home
           <HomeIcon className={classes.rightIcon} />
   </Button>*/}
-        <Button variant="contained" color="primary" className={classes.button} component={NavLink} to="/create-event">
+        <Button variant="contained" color="primary" className={classes.button} component={NavLink} to="/sign-in">
+          Sign In
+          <HomeIcon className={classes.rightIcon} />
+        </Button>
+        <Button variant="contained" color="secondary" className={classes.button} component={NavLink} to="/create-event">
           Create an Event
           <EventIcon className={classes.rightIcon} />
         </Button>
-        <Button variant="contained" color="secondary" className={classes.button} component={NavLink} to="/upload-video">
+        <Button variant="contained" color="primary" className={classes.button} component={NavLink} to="/upload-video">
           Upload a Video
           <CloudUploadIcon className={classes.rightIcon} />
         </Button>
