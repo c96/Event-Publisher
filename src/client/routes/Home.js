@@ -18,7 +18,7 @@ import { withStyles } from '@material-ui/core/styles';
 // import FacebookLogo from '../../../public/facebook100px.png';
 // import YouTubeLogo from '../../../public/yt_icon_rgb.png';
 
-// import MonkeyLogo from '../../../public/img/monkey1.png';
+import Logo from '../../../public/img/logo-via-logohub.png';
 
 const styles = theme => ({
   appBar: {
@@ -88,6 +88,9 @@ function Home(props) {
             {/* <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
               EventMonkey
             </Typography>*/}
+            <Grid container justify="center">
+              <img src={Logo} alt="Eventmonkey Logo" />;
+            </Grid>
             <Typography variant="h6" align="center" color="textSecondary" paragraph>
             EventMonkey is an app for events and promotions.
             Publish events to Facebook easily with YouTube upload and

@@ -59,7 +59,6 @@ function Header(props) {
   const { classes } = props;
   return (
     <header>
-      <img src={Logo} alt="Eventmonkey Logo" />;
       <nav>
         <Button variant="contained" color="default" className={classes.button} component={NavLink} to="/">
           Home
