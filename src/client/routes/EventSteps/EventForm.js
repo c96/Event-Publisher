@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Scheduling from './Scheduling';
+import Scheduling from './Asset/Scheduling';
 
 // recommended to be in root of component tree, but date/time used only in event page
 //import DateFnsUtils from 'date-fns';

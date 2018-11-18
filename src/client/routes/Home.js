@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,6 +17,8 @@ import { withStyles } from '@material-ui/core/styles';
 // import GoogleLogo from '../../../public/googlemaps.png';
 // import FacebookLogo from '../../../public/facebook100px.png';
 // import YouTubeLogo from '../../../public/yt_icon_rgb.png';
+
+// import MonkeyLogo from '../../../public/img/monkey1.png';
 
 const styles = theme => ({
   appBar: {
@@ -93,12 +96,12 @@ function Home(props) {
             <div className={classes.heroButtons}>
               <Grid container spacing={16} justify="center">
                 <Grid item>
-                  <Button variant="contained" color="primary">
+                  <Button variant="contained" color="primary" component={NavLink} to="/create-event">
                     I want to create an event
                   </Button>
                 </Grid>
                 <Grid item>
-                  <Button variant="outlined" color="primary">
+                  <Button variant="outlined" color="primary" component={NavLink} to="/dashboard">
                     I want to view the dashboard
                   </Button>
                 </Grid>

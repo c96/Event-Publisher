@@ -11,10 +11,11 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import HomeIcon from '@material-ui/icons/Home';
 import EventIcon from '@material-ui/icons/Event';
+import LoginIcon from '@material-ui/icons/Lock';
 import Icon from '@material-ui/core/Icon';
 
 
-import Logo from '../../public/logo-via-logohub.png';
+import Logo from '../../public/img/logo-via-logohub.png';
 
 /*
 
@@ -60,13 +61,13 @@ function Header(props) {
     <header>
       <img src={Logo} alt="Eventmonkey Logo" />;
       <nav>
-        {/*<Button variant="contained" color="primary" className={classes.button} component={NavLink} to="/">
+        <Button variant="contained" color="default" className={classes.button} component={NavLink} to="/">
           Home
           <HomeIcon className={classes.rightIcon} />
-  </Button>*/}
+        </Button>
         <Button variant="contained" color="primary" className={classes.button} component={NavLink} to="/sign-in">
           Sign In
-          <HomeIcon className={classes.rightIcon} />
+          <LoginIcon className={classes.rightIcon} />
         </Button>
         <Button variant="contained" color="secondary" className={classes.button} component={NavLink} to="/create-event">
           Create an Event

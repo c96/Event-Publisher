@@ -138,7 +138,7 @@ class CreateEvent extends React.Component {
                       onClick={this.handleNext}
                       className={classes.button}
                     >
-                      {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                      {activeStep === steps.length - 1 ? 'Submit Event' : 'Next'}
                     </Button>
                   </div>
                 </React.Fragment>
