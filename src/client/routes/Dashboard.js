@@ -16,11 +16,11 @@ class Dashboard extends Component {
 
   render() {
     return (
-          <div>
-            <Paper>
-              <TableContainer />
-            </Paper>
-          </div>
+      <div>
+        <Paper>
+          <TableContainer />
+        </Paper>
+      </div>
     );
   }
 }
