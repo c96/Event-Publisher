@@ -12,7 +12,6 @@ function ChooseLocation() {
       <Typography variant="h6" gutterBottom>
         Choose location
       </Typography>
-      {/*<MapComponent />*/}
     </React.Fragment>
   );
 }

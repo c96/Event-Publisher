@@ -1,26 +1,28 @@
-import React from "react"
-import { compose, withProps } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps"
+import React, { Component } from 'react';
+import { Map, GoogleApiWrapper } from 'google-maps-react';
 
-const Map = compose(
-  withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: '100%' }} />,
-    containerElement: <div style={{ height: '500px' }} />,
-    mapElement: <div style={{ height: '100%' }} />,
-  }),
-  withScriptjs,
-  withGoogleMap
-)((props) =>
-  <GoogleMap
-    defaultZoom={10}
-    defaultCenter={{ lat: 33.4255, lng: -111.94 }}
-  />
-)
+const mapStyles = {
+  width: '70%',
+  height: '40%'
+};
 
-export class MapComponent extends React.Component {
+export class MapComponent extends Component {
+  render() {
+    return (
+      <Map
+        google={this.props.google}
+        zoom={14}
+        style={mapStyles}
+        initialCenter={{
+          lat: -1.2884,
+          lng: 36.8233
+        }}
+        onClick={this.mapClicked}
+      />
+    );
+  }
+}
 
-    render() {
-      return <Map />
-      }
-    }
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyC4xYqoJ2z76xP1hEu8B4AG9otpRL7mxec'
+})(MapComponent);
