@@ -1,14 +1,14 @@
 {
   "name": "Event-Publisher",
   "version": "1.0.0",
-  "description": "Event publisher with react frontend, express backend. Webpack compilation and babel loading. Material-ui interface. Uses YouTube, Google Maps, Facebook Graph APIs.",
-  "main": "server.js",
+  "description": "Event publisher with react frontend, express backend. Webpack loading and babel compilation. Material-ui interface. Uses YouTube, Google Maps, Facebook Graph APIs.",
+  "main": "src/server/server.js",
   "scripts": {
     "bundle": "npm run build",
     "build": "webpack --mode production",
-    "start": "node server.js",
+    "start": "node src/server/server.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "server": "nodemon server.js",
+    "server": "nodemon src/server/server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Collin Christensen",

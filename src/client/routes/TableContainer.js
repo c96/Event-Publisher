@@ -16,12 +16,19 @@ import TableRow from '@material-ui/core/TableRow';
 import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import LogIcon from '@material-ui/icons/DateRange';
+import ListIcon from '@material-ui/icons/Update';
+import Typography from '@material-ui/core/Typography';
 
 class TableContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: []
+      events: [
+        { Title: 'test name 1', Location: 'test', Date: 'test' },
+        { Title: 'test name 2', Location: 'test', Date: 'test' },
+        { Title: 'test name 3', Location: 'test', Date: 'test' }
+      ]
     };
   }
 
@@ -61,29 +68,32 @@ class TableContainer extends Component {
 
   render() {
     return (
-      <Table id="event-table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Event Title</TableCell>
-            <TableCell location>Location</TableCell>
-            <TableCell date>Date</TableCell>
-            <TableCell />
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {this.state.events.map(event => (
-            <TableRow id={event.Id}>
-              <TableCell>{event.Title}</TableCell>
-              <TableCell>{event.Location}</TableCell>
-              <TableCell>{event.Date}</TableCell>
-              <TableCell>
-                <IconButton onClick={() => { this.deleteEvent(event.Id); }}><DeleteIcon />
-                </IconButton>
-              </TableCell>
+      <React.Fragment>
+        <Typography>List Events <IconButton onClick={() => { this.ListEvents(); }}><ListIcon /></IconButton></Typography>
+        <Table id="event-table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Event Title</TableCell>
+              <TableCell location>Location</TableCell>
+              <TableCell date>Date</TableCell>
+              <TableCell>Actions</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {this.state.events.map(event => (
+              <TableRow id={event.Id}>
+                <TableCell>{event.Title}</TableCell>
+                <TableCell>{event.Address}</TableCell>
+                <TableCell>{event.Date}</TableCell>
+                <TableCell>
+                  <IconButton onClick={() => { this.deleteEvent(event.Id); }}><DeleteIcon /></IconButton>
+                  <IconButton onClick={() => { this.testMessage(event.Id); }}><LogIcon /></IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </React.Fragment>
     );
   }
 }

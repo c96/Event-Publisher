@@ -89,7 +89,7 @@ function Home(props) {
               EventMonkey
             </Typography>*/}
             <Grid container justify="center">
-              <img src={Logo} alt="Eventmonkey Logo" />;
+              <img src={Logo} alt="Eventmonkey Logo" />
             </Grid>
             <Typography variant="h6" align="center" color="textSecondary" paragraph>
             EventMonkey is an app for events and promotions.
@@ -114,7 +114,7 @@ function Home(props) {
         </div>
         <div className={classNames(classes.layout, classes.cardGrid)}>
           {/* End hero unit */}
-          <Grid container spacing={40}>
+          <Grid container spacing={40} justify="center">
             <Grid item sm={6} md={4} lg={3}>
               <Card className={classes.card}>
                   <CardContent className={classes.cardContent}>

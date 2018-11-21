@@ -104,7 +104,7 @@ class CreateEvent extends React.Component {
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h4" align="center">
-              New Event Form
+              Create Your Event
             </Typography>
             <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map(label => (
