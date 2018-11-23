@@ -33,7 +33,7 @@ class TableContainer extends Component {
   }
 
   // Lists events
-  componentDidMount() {
+  listEvents() {
     axios({
       method: 'get',
       url: '/listEvents',
@@ -63,13 +63,13 @@ class TableContainer extends Component {
 
   // Test
   testMessage(e) {
-    console.log('Delete Button Pressed');
+    console.log('Log Button Pressed');
   }
 
   render() {
     return (
       <React.Fragment>
-        <Typography>List Events <IconButton onClick={() => { this.ListEvents(); }}><ListIcon /></IconButton></Typography>
+        <Typography>List Events <IconButton onClick={() => { this.listEvents(1); }}><ListIcon /></IconButton></Typography>
         <Table id="event-table">
           <TableHead>
             <TableRow>
