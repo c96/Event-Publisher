@@ -7,7 +7,6 @@
  */
 
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -24,20 +23,16 @@ class TableContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [
-        { Title: 'test name 1', Location: 'test', Date: 'test' },
-        { Title: 'test name 2', Location: 'test', Date: 'test' },
-        { Title: 'test name 3', Location: 'test', Date: 'test' }
-      ]
+      events: []
     };
   }
 
   // Lists events
   componentDidMount() {
+    console.log('component mount');
     axios({
       method: 'get',
-      url: '/listEvents',
-      timeout: 5000
+      url: '/listEvents'
     })
       .then((res) => {
         const events = res.data;
@@ -69,7 +64,11 @@ class TableContainer extends Component {
   render() {
     return (
       <React.Fragment>
-        <Typography>List Events <IconButton onClick={() => { this.ListEvents(); }}><ListIcon /></IconButton></Typography>
+        <Typography>List Events
+          <IconButton onClick={() => { this.componentDidMount(); }}>
+            <ListIcon />
+          </IconButton>
+        </Typography>
         <Table id="event-table">
           <TableHead>
             <TableRow>
@@ -81,13 +80,17 @@ class TableContainer extends Component {
           </TableHead>
           <TableBody>
             {this.state.events.map(event => (
-              <TableRow id={event.Id}>
-                <TableCell>{event.Title}</TableCell>
-                <TableCell>{event.Address}</TableCell>
-                <TableCell>{event.Date}</TableCell>
+              <TableRow id={event.id}>
+                <TableCell>{event.title}</TableCell>
+                <TableCell>{event.location}</TableCell>
+                <TableCell>{event.date}</TableCell>
                 <TableCell>
-                  <IconButton onClick={() => { this.deleteEvent(event.Id); }}><DeleteIcon /></IconButton>
-                  <IconButton onClick={() => { this.testMessage(event.Id); }}><LogIcon /></IconButton>
+                  <IconButton onClick={() => { this.deleteEvent(event.id); }}>
+                    <DeleteIcon />
+                  </IconButton>
+                  <IconButton onClick={() => { this.testMessage(); }}>
+                    <LogIcon />
+                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}

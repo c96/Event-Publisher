@@ -9,9 +9,6 @@ import Paper from '@material-ui/core/Paper';
 import TableContainer from './TableContainer';
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
