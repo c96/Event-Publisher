@@ -29,7 +29,6 @@ class TableContainer extends Component {
 
   // Lists events
   componentDidMount() {
-    console.log('component mount');
     axios({
       method: 'get',
       url: '/listEvents'
@@ -45,7 +44,9 @@ class TableContainer extends Component {
 
   // Deletes an event with the given key
   deleteEvent(id) {
-    axios.post('/delete', { id })
+    console.log(id);
+    axios
+      .post('/delete', { id })
       .then((res) => {
         console.log(res.data);
         this.componentDidMount();
@@ -53,12 +54,6 @@ class TableContainer extends Component {
       .catch((err) => {
         console.error('ERROR:', err);
       });
-    this.componentDidMount();
-  }
-
-  // Test
-  testMessage(e) {
-    console.log('Delete Button Pressed');
   }
 
   render() {

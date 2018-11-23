@@ -112,7 +112,7 @@ app.get('/sendStore', (req, res) => {
       description: 'Event description.',
       latitude: 33.4255,
       longitude: -111.9400,
-      },
+    },
   };
 
   // Saves the entity
@@ -124,12 +124,11 @@ app.get('/sendStore', (req, res) => {
     .catch((err) => {
       console.error('ERROR:', err);
     });
-})
+});
 
 // Add an event to datastore
 
 app.post('/addEvent', (req, res) => {
-
   console.log(req.body);
 
   // The Cloud Datastore key for the new entity
@@ -194,12 +193,13 @@ app.get('/listEvents', (req, res) => {
 */
 app.post('/delete', (req, res) => {
   console.log(req.body);
-  const eventKey = datastore.key(['Event', req.body.id]);
-
+  const eventKey = datastore.key(['event', req.body.id]);
+  // const eventKey = datastore.key(['event', '5629499534213120']);
+  console.log(eventKey);
   datastore
     .delete(eventKey)
     .then(() => {
-      console.log('Event deleted successfully.');
+      res.send(`Event ${eventKey.name} deleted`);
     })
     .catch((err) => {
       console.error('ERROR:', err);
