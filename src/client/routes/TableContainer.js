@@ -53,12 +53,12 @@ class TableContainer extends Component {
     axios.post('/delete', { id })
       .then((res) => {
         console.log(res.data);
-        this.componentDidMount();
+        this.listEvents();
       })
       .catch((err) => {
         console.error('ERROR:', err);
       });
-    this.componentDidMount();
+    this.listEvents();
   }
 
   // Test

@@ -4,31 +4,7 @@ import {
 } from 'google-maps-react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent';
-
-/*
-const mapStyles = {
-  width: '70%',
-  height: '40%'
-};
-
-export class MapComponent extends Component {
-  render() {
-    return (
-      <Map
-        google={this.props.google}
-        zoom={14}
-        style={mapStyles}
-        initialCenter={{
-          lat: 33.4255, 
-          lng: -111.94
-        }}
-        onClick={this.mapClicked}
-      />
-    );
-  }
-}
-*/
+//import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent';
 
 export class GoogleMapContainer extends React.Component {
   constructor(props) {
@@ -60,6 +36,7 @@ export class GoogleMapContainer extends React.Component {
     }
   }
 
+
   render() {
     const style = {
       width: '50%',
@@ -67,45 +44,52 @@ export class GoogleMapContainer extends React.Component {
       //marginLeft: '0px',
       //marginRight: '0px'
     };
+    const containerStyle = {position: 'relative', width: '50%', height:'50%'};
     return (
-      <Map
-        item
-        style= {style}
-        google= {this.props.google}
-        onClick= {this.onMapClick}
-        zoom= {14}
-        initialCenter ={{ lat: 33.4255, lng: -111.94 }}
-      >
-        <Marker
-          onClick ={this.onMarkerClick}
-          title= "aaatest"
-          position= {{ lat: 33.4255, lng: -111.94 }}
-          name= "nameeee"
-        />
-        <InfoWindow
-          marker= {this.state.activeMarker}
-          visible ={this.state.showingInfoWindow}
-        >
-          <Paper>
-            <Typography
-              variant= "headline"
-              component= "h4"
+      <Paper>
+        <div>
+          <Map
+            item
+            style= {style}
+            google= {this.props.google} 
+            //containerStyle={containerStyle}
+            onClick= {this.onMapClick}
+            zoom= {14}
+            initialCenter ={{ lat: 33.4255, lng: -111.94 }}
+          >
+            <Marker
+              onClick ={this.onMarkerClick}
+              title= "aaatest"
+              position= {{ lat: 33.4255, lng: -111.94 }}
+              name= "nameeee"
+            />
+            <InfoWindow
+              marker= {this.state.activeMarker}
+              visible ={this.state.showingInfoWindow}
             >
-              marker.title
-            </Typography>
-            <Typography
-              component= "p"
-            >
-              marker.name
-            </Typography>
-          </Paper>
-        </InfoWindow>
-      </Map>
+              <Paper>
+                <Typography
+                  variant= "headline"
+                  component= "h4"
+                >
+                  marker.title
+                </Typography>
+                <Typography
+                  component= "p"
+                >
+                  marker.name
+                </Typography>
+              </Paper>
+            </InfoWindow>
+          </Map>
+        </div>
+      </Paper>
+      
     );
   }
 }
 
-export default GoogleApiComponent({
+export default GoogleApiWrapper({
   apiKey: 'AIzaSyC4xYqoJ2z76xP1hEu8B4AG9otpRL7mxec'
 })(GoogleMapContainer);
 
