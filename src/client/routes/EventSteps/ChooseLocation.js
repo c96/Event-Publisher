@@ -8,6 +8,25 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import MapComponent from './Asset/AutoComplete';
 
+export class ChooseLocation extends React.Component {
+
+  componentDidMount() {
+    this.forceUpdate();
+  }
+  render() {
+    return (
+      <React.Fragment>
+        <Typography variant="h6" gutterBottom>
+          Choose location
+          <MapComponent />
+        </Typography>
+        
+      </React.Fragment>
+    );
+  }
+}
+
+/*
 function ChooseLocation() {
   return (
     <React.Fragment>
@@ -19,5 +38,6 @@ function ChooseLocation() {
     </React.Fragment>
   );
 }
+*/
 
 export default ChooseLocation;

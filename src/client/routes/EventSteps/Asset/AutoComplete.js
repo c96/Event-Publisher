@@ -28,6 +28,7 @@ export class GoogleMapContainer extends React.Component {
   }
 
   onMapClick = (props) => {
+    this.forceUpdate();
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
@@ -39,21 +40,24 @@ export class GoogleMapContainer extends React.Component {
 
   render() {
     const style = {
-      width: '50%',
-      height: '40%'
+      //position: 'relative',
+      width: '50vh',
+      height: '40vh'
       //marginLeft: '0px',
       //marginRight: '0px'
     };
-    const containerStyle = {position: 'relative', width: '50%', height:'50%'};
+    const containerStyle = {style};
     return (
       <Paper>
         <div>
           <Map
             item
+            containerStyle={containerStyle}
             style= {style}
             google= {this.props.google} 
             //containerStyle={containerStyle}
             onClick= {this.onMapClick}
+            onReady= {this.forceUpdate}
             zoom= {14}
             initialCenter ={{ lat: 33.4255, lng: -111.94 }}
           >
