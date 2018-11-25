@@ -19,6 +19,11 @@ import LogIcon from '@material-ui/icons/DateRange';
 import ListIcon from '@material-ui/icons/Update';
 import Typography from '@material-ui/core/Typography';
 
+function formatEvent(event) {
+  const str = event.title;
+  return str;
+}
+
 class TableContainer extends Component {
   constructor(props) {
     super(props);
@@ -56,6 +61,20 @@ class TableContainer extends Component {
       });
   }
 
+  // Post to FB
+  fbPost(event) {
+    const str = formatEvent(event);
+    console.log(str);
+    axios
+      .post('https://us-central1-event-monkey.cloudfunctions.net/fbPostAlpha')
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error('ERROR:', err);
+      });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -83,7 +102,7 @@ class TableContainer extends Component {
                   <IconButton onClick={() => { this.deleteEvent(event.id); }}>
                     <DeleteIcon />
                   </IconButton>
-                  <IconButton onClick={() => { this.testMessage(); }}>
+                  <IconButton onClick={() => { this.fbPost(event); }}>
                     <LogIcon />
                   </IconButton>
                 </TableCell>
