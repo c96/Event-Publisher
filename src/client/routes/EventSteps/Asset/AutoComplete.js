@@ -1,10 +1,15 @@
 import React from 'react';
 import {
- GoogleApiWrapper, InfoWindow, Map, Marker 
+  GoogleApiWrapper, InfoWindow, Map, Marker
 } from 'google-maps-react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-//import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent';
+import { Z_BLOCK } from 'zlib';
+// import GoogleApiComponent from 'google-maps-react/dist/GoogleApiComponent';
+
+const LoadingContainer = props => (
+  <div>Fancy loading container!</div>
+);
 
 export class GoogleMapContainer extends React.Component {
   constructor(props) {
@@ -12,7 +17,7 @@ export class GoogleMapContainer extends React.Component {
     this.state = {
       showingInfoWindow: false,
       activeMarker: {},
-      selectedPlace: {}
+      selectedPlace: {},
     };
     // binding this to event-handler functions
     this.onMarkerClick = this.onMarkerClick.bind(this);
@@ -40,46 +45,46 @@ export class GoogleMapContainer extends React.Component {
 
   render() {
     const style = {
-      //position: 'relative',
-      width: '50vh',
-      height: '40vh'
-      //marginLeft: '0px',
-      //marginRight: '0px'
+      position: 'relative',
+      width: '45vw',
+      height: '35vh'
     };
-    const containerStyle = {style};
     return (
       <Paper>
+        <Typography variant="h6" gutterBottom>
+        Enter latitude and longitude
+        </Typography>
         <div>
           <Map
             item
-            containerStyle={containerStyle}
-            style= {style}
-            google= {this.props.google} 
-            //containerStyle={containerStyle}
-            onClick= {this.onMapClick}
-            onReady= {this.forceUpdate}
-            zoom= {14}
-            initialCenter ={{ lat: 33.4255, lng: -111.94 }}
+            style={style}
+            className="map"
+            google={this.props.google}
+            // containerStyle={containerStyle}
+            onClick={this.onMapClick}
+            onReady={this.forceUpdate}
+            zoom={14}
+            initialCenter={{ lat: 33.4255, lng: -111.94 }}
           >
             <Marker
-              onClick ={this.onMarkerClick}
-              title= "aaatest"
-              position= {{ lat: 33.4255, lng: -111.94 }}
-              name= "nameeee"
+              onClick={this.onMarkerClick}
+              title="aaatest"
+              position={{ lat: 33.4255, lng: -111.94 }}
+              name="nameeee"
             />
             <InfoWindow
-              marker= {this.state.activeMarker}
-              visible ={this.state.showingInfoWindow}
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
             >
               <Paper>
                 <Typography
-                  variant= "headline"
-                  component= "h4"
+                  variant="headline"
+                  component="h4"
                 >
                   marker.title
                 </Typography>
                 <Typography
-                  component= "p"
+                  component="p"
                 >
                   marker.name
                 </Typography>
@@ -88,7 +93,7 @@ export class GoogleMapContainer extends React.Component {
           </Map>
         </div>
       </Paper>
-      
+
     );
   }
 }

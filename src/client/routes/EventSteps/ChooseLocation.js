@@ -1,5 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -8,36 +9,29 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import MapComponent from './Asset/AutoComplete';
 
-export class ChooseLocation extends React.Component {
 
-  componentDidMount() {
-    this.forceUpdate();
-  }
-  render() {
-    return (
-      <React.Fragment>
-        <Typography variant="h6" gutterBottom>
-          Choose location
-          <MapComponent />
-        </Typography>
-        
-      </React.Fragment>
-    );
-  }
-}
+const styles = {
+  card: {
+    minHeight: '50vh',
+  },
+};
 
-/*
-function ChooseLocation() {
+function ChooseLocation(props) {
+  const { classes } = props;
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Choose location
-        <MapComponent />
-      </Typography>
-      
-    </React.Fragment>
-  );
-}
-*/
 
-export default ChooseLocation;
+        <Card className={classes.card}>
+          <MapComponent />
+        </Card>
+
+      </Typography>
+
+    </React.Fragment>
+    );
+}
+
+export default withStyles(styles)(ChooseLocation);
