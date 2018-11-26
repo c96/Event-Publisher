@@ -5,7 +5,6 @@ import {
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import MUIPlacesAutocomplete from 'mui-places-autocomplete';
 
 
 export class GoogleMapContainer extends React.Component {
@@ -50,9 +49,6 @@ export class GoogleMapContainer extends React.Component {
     return (
       <Paper>
         
-        <MUIPlacesAutocomplete onSuggestionSelected={this.onSuggestionSelected}
-          renderTarget={() => ()}
-
         <div>
           <Map
             item

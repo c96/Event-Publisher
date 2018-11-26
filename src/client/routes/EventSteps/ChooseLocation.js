@@ -7,7 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import MapComponent from './Asset/geocodelatlong';
+import AutocompleteComponent from './Asset/geocodelatlong';
+import GoogleMapComponent from './Asset/MapWithAutocomplete';
 
 
 const styles = {
@@ -19,19 +20,29 @@ const styles = {
 function ChooseLocation(props) {
   const { classes } = props;
 
+
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Choose location
 
         <Card className={classes.card}>
-          <MapComponent />
+          <Grid container spacing={24}>
+            <Grid item xs={12}>
+              <AutocompleteComponent />
+            </Grid>
+            <Grid item xs={12}>
+              <GoogleMapComponent />
+            </Grid>
+          </Grid>
+
         </Card>
 
       </Typography>
 
     </React.Fragment>
-    );
+  );
 }
 
 export default withStyles(styles)(ChooseLocation);
