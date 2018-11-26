@@ -7,7 +7,6 @@
  */
 
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -15,20 +14,22 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton/IconButton';
+import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import LogIcon from '@material-ui/icons/DateRange';
 import ListIcon from '@material-ui/icons/Update';
 import Typography from '@material-ui/core/Typography';
 
+function formatEvent(event) {
+  const str = `${event.title} on ${event.date}\n${event.desc}\n${event.url}`;
+  return str;
+}
+
 class TableContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [
-        { Title: 'test name 1', Location: 'test', Date: 'test' },
-        { Title: 'test name 2', Location: 'test', Date: 'test' },
-        { Title: 'test name 3', Location: 'test', Date: 'test' }
-      ]
+      events: []
     };
   }
 
@@ -36,8 +37,7 @@ class TableContainer extends Component {
   componentDidMount() {
     axios({
       method: 'get',
-      url: '/listEvents',
-      timeout: 5000
+      url: '/listEvents'
     })
       .then((res) => {
         const events = res.data;
@@ -50,7 +50,9 @@ class TableContainer extends Component {
 
   // Deletes an event with the given key
   deleteEvent(id) {
-    axios.post('/delete', { id })
+    console.log(id);
+    axios
+      .post('/delete', { id })
       .then((res) => {
         console.log(res.data);
         this.componentDidMount();
@@ -58,18 +60,30 @@ class TableContainer extends Component {
       .catch((err) => {
         console.error('ERROR:', err);
       });
-    this.componentDidMount();
   }
 
-  // Test
-  testMessage(e) {
-    console.log('Delete Button Pressed');
+  // Post to FB
+  fbPost(event) {
+    const str = formatEvent(event);
+    console.log(str);
+    axios
+      .post('https://us-central1-event-monkey.cloudfunctions.net/fbPostAlpha', { 'message': str, 'url': event.url })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error('ERROR:', err);
+      });
   }
 
   render() {
     return (
       <React.Fragment>
-        <Typography>List Events <IconButton onClick={() => { this.ListEvents(); }}><ListIcon /></IconButton></Typography>
+        <Typography>List Events
+          <IconButton onClick={() => { this.componentDidMount(); }}>
+            <ListIcon />
+          </IconButton>
+        </Typography>
         <Table id="event-table">
           <TableHead>
             <TableRow>
@@ -81,13 +95,17 @@ class TableContainer extends Component {
           </TableHead>
           <TableBody>
             {this.state.events.map(event => (
-              <TableRow id={event.Id}>
-                <TableCell>{event.Title}</TableCell>
-                <TableCell>{event.Address}</TableCell>
-                <TableCell>{event.Date}</TableCell>
+              <TableRow id={event.id}>
+                <TableCell>{event.title}</TableCell>
+                <TableCell>{event.location}</TableCell>
+                <TableCell>{event.date}</TableCell>
                 <TableCell>
-                  <IconButton onClick={() => { this.deleteEvent(event.Id); }}><DeleteIcon /></IconButton>
-                  <IconButton onClick={() => { this.testMessage(event.Id); }}><LogIcon /></IconButton>
+                  <IconButton onClick={() => { this.deleteEvent(event.id); }}>
+                    <DeleteIcon />
+                  </IconButton>
+                  <Button onClick={() => { this.fbPost(event); }}>
+                    POST
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

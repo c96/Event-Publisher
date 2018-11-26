@@ -15,7 +15,7 @@ app.get('/aatest', (req, res) => {
 });
 
 // Google Cloud Platform project ID
-const projectId = 'event-table';
+const projectId = 'event-monkey';
 // Google Cloud Datastore Client
 const Datastore = require('@google-cloud/datastore');
 
@@ -28,7 +28,7 @@ app.post('/addEvent', (req) => {
   console.log(req.body);
 
   // The Cloud Datastore key for the new entity
-  const eventKey = datastore.key('Event');
+  const eventKey = datastore.key('event');
 
   // Prepares the new entity
   const entity = {
@@ -54,26 +54,26 @@ app.post('/addEvent', (req) => {
  *  Lists the 10 most recent events in Google Datastore.
  */
 app.get('/listEvents', (req, res) => {
-  const query = datastore.createQuery('Event').limit(10).order('Date', {
+  const query = datastore.createQuery('event').limit(10).order('date', {
     descending: true,
   });
   const eventList = [];
-
+  console.log('now');
   datastore
     .runQuery(query)
     .then((results) => {
       const events = results[0];
       events.forEach((event) => {
-        const date = new Date(event.Date);
+        const date = new Date(event.date);
 
         eventList.push({
-          Title: event.Title,
-          Location: event.Address,
-          Date: date.toLocaleDateString('en-US'),
-          Id: event[datastore.KEY].path[1]
+          title: event.title,
+          location: event.address,
+          date: date.toLocaleDateString('en-US'),
+          id: event[datastore.KEY].path[1]
         });
       });
-      // console.log(list);
+      console.log(eventList);
       res.send(eventList);
     })
     .catch((err) => {
@@ -90,7 +90,7 @@ app.get('/listEvents', (req, res) => {
  */
 app.post('/delete', (req) => {
   console.log(req.body);
-  const eventKey = datastore.key(['Event', req.body.id]);
+  const eventKey = datastore.key(['Eeent', req.body.id]);
 
   datastore
     .delete(eventKey)
