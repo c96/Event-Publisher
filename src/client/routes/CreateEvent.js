@@ -10,7 +10,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import EventForm from './EventSteps/EventForm';
-import PaymentForm from './EventSteps/ChooseLocation';
+import ChooseLocation from './EventSteps/ChooseLocation';
 import Review from './EventSteps/Review';
 
 const styles = theme => ({
@@ -22,15 +22,16 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
     [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
-      width: 600,
+      width: '50vw',
       marginLeft: 'auto',
       marginRight: 'auto',
     },
   },
   paper: {
+    //width: '50vw',
     marginTop: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit * 3,
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 1,
     [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
       marginTop: theme.spacing.unit * 6,
       marginBottom: theme.spacing.unit * 6,
@@ -57,7 +58,7 @@ function getStepContent(step) {
     case 0:
       return <EventForm />;
     case 1:
-      return <PaymentForm />;
+      return <ChooseLocation />;
     case 2:
       return <Review />;
     default:
