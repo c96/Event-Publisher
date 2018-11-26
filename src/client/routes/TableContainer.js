@@ -14,13 +14,14 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton/IconButton';
+import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import LogIcon from '@material-ui/icons/DateRange';
 import ListIcon from '@material-ui/icons/Update';
 import Typography from '@material-ui/core/Typography';
 
 function formatEvent(event) {
-  const str = event.title;
+  const str = `${event.title}\n${event.date}\n${event.desc}\n${event.url}`;
   return str;
 }
 
@@ -66,7 +67,7 @@ class TableContainer extends Component {
     const str = formatEvent(event);
     console.log(str);
     axios
-      .post('https://us-central1-event-monkey.cloudfunctions.net/fbPostAlpha')
+      .post('https://us-central1-event-monkey.cloudfunctions.net/fbPostAlpha', { 'message': str })
       .then((res) => {
         console.log(res.data);
       })
@@ -102,9 +103,9 @@ class TableContainer extends Component {
                   <IconButton onClick={() => { this.deleteEvent(event.id); }}>
                     <DeleteIcon />
                   </IconButton>
-                  <IconButton onClick={() => { this.fbPost(event); }}>
-                    <LogIcon />
-                  </IconButton>
+                  <Button onClick={() => { this.fbPost(event); }}>
+                    POST
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

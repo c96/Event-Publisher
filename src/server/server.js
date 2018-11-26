@@ -173,7 +173,9 @@ app.get('/listEvents', (req, res) => {
           title: event.title,
           location: event.address,
           date: date.toLocaleDateString('en-US'),
-          id: event[datastore.KEY].path[1]
+          id: event[datastore.KEY].path[1],
+          desc: event.desc,
+          url: 'wwww.youtube.com'
         });
       });
       // console.log(eventList);
