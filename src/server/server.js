@@ -175,7 +175,7 @@ app.get('/listEvents', (req, res) => {
           date: date.toLocaleDateString('en-US'),
           id: event[datastore.KEY].path[1],
           desc: event.desc,
-          url: 'wwww.youtube.com'
+          url: event.url
         });
       });
       // console.log(eventList);

@@ -21,7 +21,7 @@ import ListIcon from '@material-ui/icons/Update';
 import Typography from '@material-ui/core/Typography';
 
 function formatEvent(event) {
-  const str = `${event.title}\n${event.date}\n${event.desc}\n${event.url}`;
+  const str = `${event.title} on ${event.date}\n${event.desc}\n${event.url}`;
   return str;
 }
 
@@ -67,7 +67,7 @@ class TableContainer extends Component {
     const str = formatEvent(event);
     console.log(str);
     axios
-      .post('https://us-central1-event-monkey.cloudfunctions.net/fbPostAlpha', { 'message': str })
+      .post('https://us-central1-event-monkey.cloudfunctions.net/fbPostAlpha', { 'message': str, 'url': event.url })
       .then((res) => {
         console.log(res.data);
       })
