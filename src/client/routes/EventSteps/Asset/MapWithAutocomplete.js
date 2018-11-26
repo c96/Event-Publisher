@@ -5,6 +5,8 @@ import {
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import MUIPlacesAutocomplete from 'mui-places-autocomplete';
+
 
 export class GoogleMapContainer extends React.Component {
   constructor(props) {
@@ -14,21 +16,10 @@ export class GoogleMapContainer extends React.Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      position: null,
-      textvalue: null,
-      autocomplete: null
     };
     // binding this to event-handler functions
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
-  }
-
-  componentDidMount() {
-    this.renderAutoComplete();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props !== prevProps.map) this.renderAutoComplete();
   }
 
   onMarkerClick = (props, marker, e) => {
@@ -49,31 +40,7 @@ export class GoogleMapContainer extends React.Component {
     }
   }
 
-  renderAutoComplete(textInput) {
-    const { google, map } = this.props;
-
-    if (!google || !map) return;
-
-    const autocomplete = new google.maps.places.Autocomplete(textInput);
-    autocomplete.bindTo('bounds', map);
-
-    autocomplete.addListener('place_changed', () => {
-      const place = autocomplete.getPlace();
-
-      if (!place.geometry) return;
-
-      if (place.geometry.viewport) map.fitBounds(place.geometry.viewport);
-      else {
-        map.setCenter(place.geometry.location);
-        map.setZoom(17);
-      }
-
-      this.setState({ position: place.geometry.location });
-    });
-  }
-
   render() {
-    //const { position } = this.state;
 
     const style = {
       position: 'relative',
@@ -82,18 +49,9 @@ export class GoogleMapContainer extends React.Component {
     };
     return (
       <Paper>
-        <TextField
-          id="enterlocation"
-          label="Enter address"
-          placeholder="Enter a location"
-          onChange={this.renderAutoComplete('value')}
-        />
-        <Typography variant="caption">
-        Latitude: 
-        </Typography>
-        <Typography variant="caption">
-        Longitude: 
-        </Typography>
+        
+        <MUIPlacesAutocomplete onSuggestionSelected={this.onSuggestionSelected}
+          renderTarget={() => ()}
 
         <div>
           <Map
