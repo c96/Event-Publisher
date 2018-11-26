@@ -33,7 +33,7 @@ class TableContainer extends Component {
   }
 
   // Lists events
-  listEvents() {
+  componentDidMount() {
     axios({
       method: 'get',
       url: '/listEvents',
@@ -53,23 +53,23 @@ class TableContainer extends Component {
     axios.post('/delete', { id })
       .then((res) => {
         console.log(res.data);
-        this.listEvents();
+        this.componentDidMount();
       })
       .catch((err) => {
         console.error('ERROR:', err);
       });
-    this.listEvents();
+    this.componentDidMount();
   }
 
   // Test
   testMessage(e) {
-    console.log('Log Button Pressed');
+    console.log('Delete Button Pressed');
   }
 
   render() {
     return (
       <React.Fragment>
-        <Typography>List Events <IconButton onClick={() => { this.listEvents(1); }}><ListIcon /></IconButton></Typography>
+        <Typography>List Events <IconButton onClick={() => { this.ListEvents(); }}><ListIcon /></IconButton></Typography>
         <Table id="event-table">
           <TableHead>
             <TableRow>
