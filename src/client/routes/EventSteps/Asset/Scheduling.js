@@ -1,25 +1,37 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 import { DateTimePicker } from 'material-ui-pickers';
 
-export default class BasicDateTimePicker extends PureComponent {
-  state = {
-    selectedDate: new Date('December 17, 2018 13:54:00'),
-  };
+
+function saveLocalStorage(key, value) {
+  window.localStorage.setItem(key, value);
+  console.log('key: ' + key + ', value: ' + value);
+}
+
+class Scheduling extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      initialDate: new Date('December 31, 2018 12:00:00'),
+      savedDate: ""
+    };
+  }
 
   handleDateChange = (date) => {
-    this.setState({ selectedDate: date });
-  };
+    //console.log(date.toString());
+    //this.setState({ savedDate: date });
+    saveLocalStorage('date', date);
+  }
 
   render() {
-    const { selectedDate } = this.state;
-
+    const { initialDate } = this.state;
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
         <DateTimePicker 
-        value={selectedDate} 
+        value={initialDate} 
         onChange={this.handleDateChange} 
         label="Enter date and time"
         showTodayButton />
@@ -27,3 +39,5 @@ export default class BasicDateTimePicker extends PureComponent {
     );
   }
 }
+
+export default Scheduling;
