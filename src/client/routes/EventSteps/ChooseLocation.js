@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import AutocompleteComponent from './Asset/GeocodeAutocomplete';
-import GoogleMapComponent from './Asset/GoogleMapComp';
+import GoogleMapComponent from './Asset/GoogleMapOption';
 import { saveLocalStorage } from '../../../utils/localstorage';
 
 const styles = {
@@ -43,11 +43,11 @@ class ChooseLocation extends React.Component {
 
           <Card className={classes.card}>
             <Grid container spacing={24}>
-              <Grid item xs={12}>
+              {/*<Grid item xs={12}>
                 <AutocompleteComponent locationLink={this.locationLink} />
-              </Grid>
+              </Grid>*/}
               <Grid item xs={12}>
-                <GoogleMapComponent />
+                <GoogleMapComponent locationLink={this.locationLink} />
               </Grid>
             </Grid>
 

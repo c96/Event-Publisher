@@ -2,13 +2,9 @@ import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import MUIPlacesAutocomplete, { geocodeBySuggestion } from 'mui-places-autocomplete';
 // import ChooseLocation from '../ChooseLocation';
+import { saveLocalStorage } from '../../../../utils/localstorage';
 
 // Extended from demo geocode lat long in mui-places-autocomplete
-
-function saveLocalStorage(key, value) {
-  window.localStorage.setItem(key, value);
-  console.log(`key: ${  key  }, value: ${  value}`);
-}
 
 export class geocodeLatLong extends React.Component {
   constructor(props) {
