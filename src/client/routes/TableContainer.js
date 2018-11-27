@@ -61,6 +61,7 @@ class TableContainer extends Component {
       .then((res) => {
         console.log(res.data);
         this.listEvents();
+        this.forceUpdate();
       })
       .catch((err) => {
         console.error('ERROR:', err);
@@ -85,7 +86,7 @@ class TableContainer extends Component {
     return (
       <React.Fragment>
         <Typography>List Events
-          <IconButton onClick={() => { this.componentDidMount(); }}>
+          <IconButton onClick={() => { this.listEvents(); }}>
             <ListIcon />
           </IconButton>
         </Typography>
