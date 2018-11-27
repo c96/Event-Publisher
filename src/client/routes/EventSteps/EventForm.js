@@ -11,12 +11,6 @@ import { saveLocalStorage } from '../../../utils/localstorage';
 // import DateFnsUtils from 'date-fns';
 // import { MuiPickersUtilsProvider, DateTimePicker } from 'material-ui-pickers';
 
-function loadLocalStorage(e) {
-  const x = window.localStorage.getItem(localstorage_key);
-  this.setState({ userJson: x });
-  this.refs.textarea.value = x;
-  this.validateJson();
-}
 
 class EventForm extends React.Component {
 

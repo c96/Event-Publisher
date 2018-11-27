@@ -11,13 +11,6 @@ import AutocompleteComponent from './Asset/GeocodeAutocomplete';
 import GoogleMapComponent from './Asset/GoogleMapComp';
 import { saveLocalStorage } from '../../../utils/localstorage';
 
-function loadLocalStorage(e) {
-  const x = window.localStorage.getItem(localstorage_key);
-  this.setState({ userJson: x });
-  this.refs.textarea.value = x;
-  this.validateJson();
-}
-
 const styles = {
   card: {
     minHeight: '50vh',
@@ -27,16 +20,18 @@ const styles = {
 class ChooseLocation extends React.Component {
   constructor(props) {
     super(props);
-
-    this.mapper = React.createRef();
   }
 
 
-  locationLink(address, lat, lon) {
+  locationLink(address, coordinates, viewport) {
     // console.log('address: ' + address + '\nlat: ' + lat + '\nlon: ' + lon);
+
     saveLocalStorage('address', address);
-    saveLocalStorage('lat', lat);
-    saveLocalStorage('lon', lon);
+    saveLocalStorage('lat', coordinates.lat);
+    saveLocalStorage('lon', coordinates.lng);
+
+    saveLocalStorage('coordinates', JSON.stringify(coordinates));
+    saveLocalStorage('viewport',JSON.stringify(viewport));
   }
 
   render() {
@@ -52,7 +47,7 @@ class ChooseLocation extends React.Component {
                 <AutocompleteComponent locationLink={this.locationLink} />
               </Grid>
               <Grid item xs={12}>
-                <GoogleMapComponent ref={this.mapper} />
+                <GoogleMapComponent />
               </Grid>
             </Grid>
 

@@ -18,7 +18,8 @@ export class geocodeLatLong extends React.Component {
       open: false,
       coordinates: null,
       errorMessage: null,
-      suggestion: null
+      addressName: null,
+      viewport: null
     };
 
     this.onClose = this.onClose.bind(this);
@@ -32,7 +33,7 @@ export class geocodeLatLong extends React.Component {
   }
 
   onSuggestionSelected(suggestion) {
-    this.setState({suggestion: suggestion});
+    this.setState({addressName: suggestion.description});
     // Once a suggestion has been selected by your consumer you can use the utility geocoding
     // functions to get the latitude and longitude for the selected suggestion.
     geocodeBySuggestion(suggestion).then((results) => {
@@ -53,19 +54,34 @@ export class geocodeLatLong extends React.Component {
         lng: geometry.location.lng(),
       };
 
+      const viewport = {
+        northeast : {
+          lat: geometry.viewport.getNorthEast().lat(),
+          lng: geometry.viewport.getNorthEast().lng()
+        },
+        southwest : {
+          lat: geometry.viewport.getSouthWest().lat(),
+          lng: geometry.viewport.getSouthWest().lng()
+        }
+      };
+
       // Add your business logic here. In this case we simply set our state to show our <Snackbar>.
-      this.setState({ open: true, coordinates });
+      this.setState({ open: true, coordinates, viewport });
     }).catch((err) => {
       this.setState({ open: true, errorMessage: err.message });
     });
   }
 
   renderMessage() {
-    const { suggestion, coordinates, errorMessage } = this.state;
+    const { addressName, coordinates, viewport, errorMessage } = this.state;
 
     if (coordinates) {
-      this.props.locationLink(suggestion.description, coordinates.lat, coordinates.lng);
-      return `Selected ${suggestion.description} at latitude ${coordinates.lat} and longitude ${coordinates.lng}`;
+      this.props.locationLink(addressName, coordinates, viewport);
+      return `Selected ${addressName} 
+      at latitude ${coordinates.lat} 
+      and longitude ${coordinates.lng}  
+      between NE ${viewport.northeast.lat},${viewport.northeast.lng} 
+      and SW ${viewport.southwest.lat},${viewport.southwest.lng}`;
     } if (errorMessage) {
       return `Failed to geocode suggestion because: ${errorMessage}`;
     }
