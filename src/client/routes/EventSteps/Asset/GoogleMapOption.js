@@ -8,14 +8,16 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
-import { loadLocalStorage } from '../../../../utils/localstorage';
+import { saveLocalStorage } from '../../../../utils/localstorage';
 
 class GoogleMapContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-        position: null
+        position: null,
+        streetAddress: "",
+        coordinates:  null
     };
   }
 
@@ -29,6 +31,16 @@ class GoogleMapContainer extends Component {
 
   onSubmit(e) {
     e.preventDefault();
+  }
+
+  sendLocation(addr, lat, lng) {
+    saveLocalStorage('address', addr);
+    saveLocalStorage('lat', lat);
+    saveLocalStorage('lon', lng);
+  }
+
+  omMapClick() {
+    this.sendLocation();
   }
 
   renderAutoComplete() {
@@ -50,11 +62,28 @@ class GoogleMapContainer extends Component {
         map.setZoom(17);
       }
 
+
+      // this.setState({ streetAddress: place.formatted_address });
+     
+      // console.log(place.formatted_address);
+
       this.setState({ position: place.geometry.location });
+
+      const coordinates = {
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng()
+      };
+
+      // console.log(coordinates);
+
+      this.setState({ coordinates: coordinates });
+
+      this.sendLocation(place.formatted_address, coordinates.lat, coordinates.lng);
     });
   }
 
   render() {
+
     const { position } = this.state;
 
     return (

@@ -22,17 +22,18 @@ class ChooseLocation extends React.Component {
     super(props);
   }
 
-
-  locationLink(address, coordinates, viewport) {
+/*
+  locationLink(address, lat, lon) {
     // console.log('address: ' + address + '\nlat: ' + lat + '\nlon: ' + lon);
 
     saveLocalStorage('address', address);
-    saveLocalStorage('lat', coordinates.lat);
-    saveLocalStorage('lon', coordinates.lng);
+    saveLocalStorage('lat', lat);
+    saveLocalStorage('lon', lon);
 
-    saveLocalStorage('coordinates', JSON.stringify(coordinates));
-    saveLocalStorage('viewport',JSON.stringify(viewport));
+    // saveLocalStorage('coordinates', JSON.stringify(coordinates));
+    // saveLocalStorage('viewport',JSON.stringify(viewport));
   }
+*/
 
   render() {
     const { classes } = this.props;
