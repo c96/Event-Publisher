@@ -16,12 +16,11 @@ import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton/IconButton';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import LogIcon from '@material-ui/icons/DateRange';
 import ListIcon from '@material-ui/icons/Update';
 import Typography from '@material-ui/core/Typography';
 
 function formatEvent(event) {
-  const str = `${event.title} on ${event.date}\n${event.desc}\n${event.url}`;
+  const str = `${event.title} on ${event.date}\n${event.desc}\nLocated at: ${event.location}`;
   return str;
 }
 
@@ -61,12 +60,11 @@ class TableContainer extends Component {
       .post('/delete', { id })
       .then((res) => {
         console.log(res.data);
-        this.componentDidMount();
+        this.listEvents();
       })
       .catch((err) => {
         console.error('ERROR:', err);
       });
-    this.listEvents();
   }
 
   // Post to FB
