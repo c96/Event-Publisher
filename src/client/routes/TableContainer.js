@@ -29,12 +29,18 @@ class TableContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: []
+      events: [
+        { Title: 'Please list events by clicking above button', Location: '--', Date: '--' }
+      ]
     };
   }
 
-  // Lists events
   componentDidMount() {
+    this.listEvents();
+  }
+
+  // Lists events. Also used to update
+  listEvents() {
     axios({
       method: 'get',
       url: '/listEvents'
@@ -60,6 +66,7 @@ class TableContainer extends Component {
       .catch((err) => {
         console.error('ERROR:', err);
       });
+    this.listEvents();
   }
 
   // Post to FB
@@ -104,7 +111,7 @@ class TableContainer extends Component {
                     <DeleteIcon />
                   </IconButton>
                   <Button onClick={() => { this.fbPost(event); }}>
-                    POST
+                    Post to FB
                   </Button>
                 </TableCell>
               </TableRow>

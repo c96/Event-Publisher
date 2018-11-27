@@ -33,13 +33,6 @@ app.use(express.static(path.join(__dirname, '')));
 
 app.use(express.static('dist'));
 
-// Test GET pages
-app.get('/aatest', (req, res) => {
-  res.send('Hello from App Engine!');
-});
-
-
-
 const multer = Multer({
   storage: Multer.memoryStorage(),
   limits: {
