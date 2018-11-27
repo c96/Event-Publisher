@@ -2,12 +2,8 @@ import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from 'material-ui-pickers';
 import { DateTimePicker } from 'material-ui-pickers';
+import { saveLocalStorage } from '../../../../utils/localstorage';
 
-
-function saveLocalStorage(key, value) {
-  window.localStorage.setItem(key, value);
-  console.log('key: ' + key + ', value: ' + value);
-}
 
 class Scheduling extends React.Component {
 

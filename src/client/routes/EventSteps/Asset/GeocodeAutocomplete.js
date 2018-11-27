@@ -65,7 +65,7 @@ export class geocodeLatLong extends React.Component {
 
     if (coordinates) {
       this.props.locationLink(suggestion.description, coordinates.lat, coordinates.lng);
-      return `Selected suggestions geocoded latitude is ${coordinates.lat} and longitude is ${coordinates.lng}`;
+      return `Selected ${suggestion.description} at latitude ${coordinates.lat} and longitude ${coordinates.lng}`;
     } if (errorMessage) {
       return `Failed to geocode suggestion because: ${errorMessage}`;
     }

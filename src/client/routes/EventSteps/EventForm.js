@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Scheduling from './Asset/Scheduling';
+import { saveLocalStorage } from '../../../utils/localstorage';
 
 // recommended to be in root of component tree, but date/time used only in event page
 // import DateFnsUtils from 'date-fns';
@@ -15,11 +16,6 @@ function loadLocalStorage(e) {
   this.setState({ userJson: x });
   this.refs.textarea.value = x;
   this.validateJson();
-}
-
-function saveLocalStorage(key, value) {
-  window.localStorage.setItem(key, value);
-  console.log('key: ' + key + ', value: ' + value);
 }
 
 class EventForm extends React.Component {
