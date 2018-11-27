@@ -5,6 +5,8 @@ import {
 } from 'google-maps-react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
 import { loadLocalStorage } from '../../../../utils/localstorage';
 
@@ -56,38 +58,37 @@ class GoogleMapContainer extends Component {
     const { position } = this.state;
 
     return (
-      <div>
-        <div>
-          <form onSubmit={this.onSubmit}>
-            <input
-              placeholder="Enter a location"
-              ref={ref => (this.autocomplete = ref)}
-              type="text"
-            />
+      <React.Fragment>
+        <Grid container>
+          <Grid item>
+            <form onSubmit={this.onSubmit}>
+              <input
+                placeholder="Street Address"
+                ref={ref => (this.autocomplete = ref)}
+                type="text"
+              />
+            </form>
+          </Grid>
+          <Grid item>
+            <Typography>Latitude: {position && position.lat()}</Typography>
+            <Typography>Longitude: {position && position.lng()}</Typography>
+          </Grid>
+        </Grid>
 
-            <input type="submit" value="Go" />
-          </form>
-
-          <div>
-            <div>Latitude: {position && position.lat()}</div>
-            <div>Longitude: {position && position.lng()}</div>
-          </div>
-        </div>
-
-        <div>
+        <Grid>
           <Map
             {...this.props}
             center={position}
             centerAroundCurrentLocation={false}
             containerStyle={{
-                position: 'relative',
-                width: '45vw',
-                height: '35vh'
+              position: 'relative',
+              width: '45vw',
+              height: '35vh'
             }}>
             <Marker position={position} />
           </Map>
-        </div>
-      </div>
+        </Grid>
+      </React.Fragment>
     );
   }
 }
