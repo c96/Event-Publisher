@@ -51,16 +51,12 @@ const styles = theme => ({
   },
 });
 
-const steps = ['Event Details', 'Choose Location', 'Upload Video'];
+const steps = ['Event Details'];
 
 function getStepContent(step) {
   switch (step) {
     case 0:
       return <EventForm />;
-    case 1:
-      return <ChooseLocation />;
-    case 2:
-      return <Review />;
     default:
       throw new Error('Unknown step');
   }
@@ -107,13 +103,6 @@ class CreateEvent extends React.Component {
             <Typography component="h1" variant="h4" align="center">
               Create Your Event
             </Typography>
-            <Stepper activeStep={activeStep} className={classes.stepper}>
-              {steps.map(label => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
             <React.Fragment>
               {activeStep === steps.length ? (
                 <React.Fragment>
