@@ -1,14 +1,25 @@
 import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import MUIPlacesAutocomplete, { geocodeBySuggestion } from 'mui-places-autocomplete';
+// import ChooseLocation from '../ChooseLocation';
 
 // Extended from demo geocode lat long in mui-places-autocomplete
+
+function saveLocalStorage(key, value) {
+  window.localStorage.setItem(key, value);
+  console.log(`key: ${  key  }, value: ${  value}`);
+}
 
 export class geocodeLatLong extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { open: false, coordinates: null, errorMessage: null };
+    this.state = {
+      open: false,
+      coordinates: null,
+      errorMessage: null,
+      suggestion: null
+    };
 
     this.onClose = this.onClose.bind(this);
     this.onSuggestionSelected = this.onSuggestionSelected.bind(this);
@@ -21,6 +32,7 @@ export class geocodeLatLong extends React.Component {
   }
 
   onSuggestionSelected(suggestion) {
+    this.setState({suggestion: suggestion});
     // Once a suggestion has been selected by your consumer you can use the utility geocoding
     // functions to get the latitude and longitude for the selected suggestion.
     geocodeBySuggestion(suggestion).then((results) => {
@@ -49,17 +61,18 @@ export class geocodeLatLong extends React.Component {
   }
 
   renderMessage() {
-    const { coordinates, errorMessage } = this.state
+    const { suggestion, coordinates, errorMessage } = this.state;
 
     if (coordinates) {
-      return `Selected suggestions geocoded latitude is ${coordinates.lat} and longitude is ${coordinates.lng}`
+      this.props.locationLink(suggestion.description, coordinates.lat, coordinates.lng);
+      return `Selected suggestions geocoded latitude is ${coordinates.lat} and longitude is ${coordinates.lng}`;
     } if (errorMessage) {
-      return `Failed to geocode suggestion because: ${errorMessage}`
+      return `Failed to geocode suggestion because: ${errorMessage}`;
     }
 
     // If we don't have any coordinates or error message to render (probably due to being rendered
     // the first time) then render nothing
-    return null
+    return null;
   }
 
   render() {
