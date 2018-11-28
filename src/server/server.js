@@ -125,7 +125,7 @@ app.post('/addEvent', (req, res) => {
   console.log(req.body);
 
   // The Cloud Datastore key for the new entity
-  const eventKey = datastore.key('Event');
+  const eventKey = datastore.key('event');
 
   // Prepares the new entity
   const entity = {
@@ -164,11 +164,13 @@ app.get('/listEvents', (req, res) => {
 
         eventList.push({
           title: event.title,
-          location: event.address,
+          desc: event.desc,
+          address: event.address,
+          lat: event.lat,
+          lon: event.lon,
           date: date.toLocaleDateString('en-US'),
           id: event[datastore.KEY].path[1],
-          desc: event.desc,
-          url: event.url
+          youtubeURL: event.youtubeURL
         });
       });
       // console.log(eventList);

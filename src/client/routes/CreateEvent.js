@@ -97,9 +97,11 @@ class CreateEvent extends React.Component {
 
   createEvent() {
     if (this.state.activeStep === steps.length - 1) {
-      console.log('last');
       const eventdetails = assembleEvent();
-      console.log(eventdetails);
+
+      // console.log(eventdetails);
+      // console.log(JSON.stringify(eventdetails));
+
       this.sendStore(eventdetails);
     }
   }
@@ -109,10 +111,7 @@ class CreateEvent extends React.Component {
     const url = '/addEvent';
 
     axios
-      .post(url, {
-        kind: 'Event',
-        jsondata: data
-      })
+      .post(url, data)
       .then((response) => {
         console.log(response);
       })

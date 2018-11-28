@@ -102,7 +102,7 @@ class TableContainer extends Component {
           <TableBody>
             {this.state.events.map(event => (
               <TableRow id={event.id}>
-                <TableCell>{event.title}</TableCell>
+                <TableCell>{event.title !== null ? event.title : event.eventName}</TableCell>
                 <TableCell>{event.location}</TableCell>
                 <TableCell>{event.date}</TableCell>
                 <TableCell>
