@@ -121,7 +121,7 @@ class TableContainer extends Component {
               <TableRow id={event.id}>
                 <TableCell>{event.title}</TableCell>
                 <TableCell>{event.address}</TableCell>
-                <TableCell>{event.lat + "," + event.lon}</TableCell>
+                <TableCell>{"{" + event.lat + ", " + event.lon+"}"}</TableCell>
                 <TableCell>{event.date}</TableCell>
                 <TableCell>
                   <IconButton onClick={() => { this.deleteEvent(event.id); }}>
