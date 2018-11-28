@@ -22,8 +22,8 @@ export function assembleEvent() {
   const youtubeURL = loadLocalStorage('youtubeURL');
 
   const eventDetails = {
-    eventName: eventName,
-    eventDesc: eventDesc,
+    title: eventName,
+    desc: eventDesc,
     isGoing: isGoing,
     date: date,
     address: address,

@@ -19,6 +19,22 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import ListIcon from '@material-ui/icons/Update';
 import Typography from '@material-ui/core/Typography';
 
+/*
+Local event format
+
+  const eventDetails = {
+    title: eventName,
+    desc: eventDesc,
+    isGoing: isGoing,
+    date: date,
+    address: address,
+    lat: lat,
+    lon: lon,
+    youtubeURL: youtubeURL
+  };
+*/
+
+
 function formatEvent(event) {
   const str = `${event.title} on ${event.date}\n${event.desc}\nLocated at: ${event.location}`;
   return str;
@@ -94,7 +110,8 @@ class TableContainer extends Component {
           <TableHead>
             <TableRow>
               <TableCell>Event Title</TableCell>
-              <TableCell location>Location</TableCell>
+              <TableCell address>Address</TableCell>
+              <TableCell coords>Coords</TableCell>
               <TableCell date>Date</TableCell>
               <TableCell>Actions</TableCell>
             </TableRow>
@@ -103,7 +120,8 @@ class TableContainer extends Component {
             {this.state.events.map(event => (
               <TableRow id={event.id}>
                 <TableCell>{event.title}</TableCell>
-                <TableCell>{event.location}</TableCell>
+                <TableCell>{event.address}</TableCell>
+                <TableCell>{"{" + event.lat + ", " + event.lon+"}"}</TableCell>
                 <TableCell>{event.date}</TableCell>
                 <TableCell>
                   <IconButton onClick={() => { this.deleteEvent(event.id); }}>
