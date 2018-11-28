@@ -1,8 +1,8 @@
 ## Event Publisher (Working Title: EventMonkey)
 
-EventMonkey is an app for events and promotions. Publish events to Facebook easily with YouTube upload and Google Maps to streamline the process
+EventMonkey is an app for events and promotions. Publish events to Facebook easily with YouTube upload and Google Maps to streamline the process.
 
-App Engine app for the Event Publisher
+App Engine app that acts as the Event Publisher.
 
 ### Pre-Setup (Optional)
 
@@ -18,14 +18,16 @@ Step 3: Set an environment variable in Terminal or Command Prompt:
 
     set GOOGLE_APPLICATION_CREDENTIALS=path/to/local_key/service-key.json
 
-### Setup
+### Usage
 
-Step 2: enter the following
+Step 1: enter the following
 
-    npm install && npm run-script bundle && npm start
+    npm install 
+    
+    npm run-script bundle && npm start
 
-Step 3: Navigate to localhost:3000 to confirm.
+Step 2: Navigate to localhost:3000 in a browser
 
-Step 4: Deploy to google cloud 
+Step 3: Deploy to google cloud 
 
     gcloud app deploy
