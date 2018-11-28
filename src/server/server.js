@@ -187,14 +187,14 @@ app.get('/listEvents', (req, res) => {
 *  Desc: Deletes an event from Google Datastore
 */
 app.post('/delete', (req, res) => {
-  console.log(req.body);
-  const eventKey = datastore.key(['event', req.body.id]);
-  // const eventKey = datastore.key(['event', '5629499534213120']);
-  console.log(eventKey);
+  const id = parseInt(req.body.id);
+  const eventKey = datastore.key(['event', id]);
+
   datastore
     .delete(eventKey)
-    .then(() => {
-      res.send(`Event ${eventKey.name} deleted`);
+    .then((r) => {
+      console.log(r);
+      res.send(r);
     })
     .catch((err) => {
       console.error('ERROR:', err);
