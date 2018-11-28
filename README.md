@@ -1,23 +1,33 @@
-## Event Publisher
+## Event Publisher (Working Title: EventMonkey)
 
-Various tests of cloud storage, API usage, etc. for event publisher app
+EventMonkey is an app for events and promotions. Publish events to Facebook easily with YouTube upload and Google Maps to streamline the process.
 
-To run:
+App Engine app that acts as the Event Publisher.
 
-Step 1: set environment variable in Terminal or Command Prompt 
+### Pre-Setup (Optional)
 
-    set GOOGLE_APPLICATION_CREDENTIALS=path/to/repo/testing_keys/service-key.json
+Step 1: Create a local key somewhere
 
-Step 2: enter the following
+    gcloud iam service-accounts keys create service-key.json --iam-account=IAM_ACCOUNT
 
-    npm install
+Step 2: Revoke default credentials
 
-    npm run-script bundle
+    gcloud auth application-default revoke
 
-    npm start
+Step 3: Set an environment variable in Terminal or Command Prompt:
 
-Step 3: Navigate to localhost:3000 to confirm.
+    set GOOGLE_APPLICATION_CREDENTIALS=path/to/local_key/service-key.json
 
-Step 4: Deploy to google cloud 
+### Usage
+
+Step 1: enter the following
+
+    npm install 
+    
+    npm run-script bundle && npm start
+
+Step 2: Navigate to localhost:3000 in a browser
+
+Step 3: Deploy to google cloud 
 
     gcloud app deploy
