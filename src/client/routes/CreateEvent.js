@@ -10,11 +10,11 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 import EventForm from './EventSteps/EventForm';
 import ChooseLocation from './EventSteps/ChooseLocation';
 import Review from './EventSteps/Review';
 import { assembleEvent } from '../../utils/localstorage';
-import { NavLink } from 'react-router-dom';
 
 const styles = theme => ({
   appBar: {
