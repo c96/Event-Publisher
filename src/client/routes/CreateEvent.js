@@ -13,6 +13,7 @@ import EventForm from './EventSteps/EventForm';
 import ChooseLocation from './EventSteps/ChooseLocation';
 import Review from './EventSteps/Review';
 import { assembleEvent } from '../../utils/localstorage';
+import axios from 'axios';
 
 
 const styles = theme => ({
@@ -75,11 +76,7 @@ class CreateEvent extends React.Component {
 
   handleNext = () => {
     // at last step, submit
-    if (this.state.activeStep === steps.length - 1) {
-      console.log('last');
-      const eventdetails = assembleEvent();
-      console.log(eventdetails);
-    }
+    this.createEvent();
     // at other steps, continue
     this.setState(state => ({
       activeStep: state.activeStep + 1,
@@ -97,6 +94,32 @@ class CreateEvent extends React.Component {
       activeStep: 0,
     });
   };
+
+  createEvent() {
+    if (this.state.activeStep === steps.length - 1) {
+      console.log('last');
+      const eventdetails = assembleEvent();
+      console.log(eventdetails);
+      this.sendStore(eventdetails);
+    }
+  }
+
+  sendStore(eventdetails) {
+    const data = eventdetails;
+    const url = '/addEvent';
+
+    axios
+      .post(url, {
+        kind: 'Event',
+        jsondata: data
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   render() {
     const { classes } = this.props;
