@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import AppBar from '@material-ui/core/AppBar';
@@ -152,7 +153,10 @@ class CreateEvent extends React.Component {
                     Event Submitted.
                   </Typography>
                   <Typography variant="subtitle1">
-                    Your event has been submitted and is in the process of being posted. View the Dashboard
+                    Your event has been submitted and is in the process of being posted. 
+                  <Button variant="outlined" color="primary" component={NavLink} to="/dashboard">
+                    View the dashboard
+                  </Button>
                   </Typography>
                 </React.Fragment>
               ) : (
