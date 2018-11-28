@@ -5,21 +5,55 @@ import {
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import { loadLocalStorage } from '../../../../utils/localstorage';
 
 
 export class GoogleMapContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.textInput = React.createRef();
+
+    // this.textInput = React.createRef();
+
     this.state = {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
+      viewPosition: { lat: 33.4255, lng: -111.94 }
     };
     // binding this to event-handler functions
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClick = this.onMapClick.bind(this);
   }
+
+  /*
+  componentDidMount() {
+    this.props.childComponentRef(this);
+  }
+
+  componentWillUnmount() {
+    this.props.childComponentRef(undefined);
+  }
+  
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.changeFlag !== this.props.changeFlag) {
+      this.loggerTest();
+    }
+  }
+  */
+ 
+  /*
+  componentDidMount() {
+    this.renderAutoComplete();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps.map) this.renderAutoComplete();
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+  }*/
 
   onMarkerClick = (props, marker, e) => {
     this.setState({
@@ -30,13 +64,40 @@ export class GoogleMapContainer extends React.Component {
   }
 
   onMapClick = (props) => {
-    this.forceUpdate();
+
+    this.renderAutoComplete();
+    // this.forceUpdate();
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
         activeMarker: null
       });
     }
+  }
+
+  fetchCoordinates() {
+    return JSON.parse(loadLocalStorage('coordinates'));
+  }
+
+  fetchViewport() {
+    return JSON.parse(loadLocalStorage('viewport'));
+  }
+
+  renderAutoComplete() {
+    let coordinates = this.fetchCoordinates();
+    let viewport = this.fetchViewport();
+
+    const { google, map } = this.props;
+
+    if (!google || !map) return;
+
+    if (viewport) map.fitBounds(viewport);
+    else {
+      map.setCenter(coordinates);
+      map.setZoom(17);
+    }
+
+    this.setState({ viewPosition: coordinates });
   }
 
   render() {
@@ -57,15 +118,16 @@ export class GoogleMapContainer extends React.Component {
             google={this.props.google}
             // containerStyle={containerStyle}
             onClick={this.onMapClick}
-            onReady={this.forceUpdate}
+            // onReady={this.forceUpdate}
             zoom={14}
+            center={this.viewPosition}
             initialCenter={{ lat: 33.4255, lng: -111.94 }}
           >
             <Marker
               onClick={this.onMarkerClick}
-              title="aaatest"
-              position={{ lat: 33.4255, lng: -111.94 }}
-              name="nameeee"
+              title="Marker"
+              position={this.viewPosition}
+              name="Location name"
             />
             <InfoWindow
               marker={this.state.activeMarker}
@@ -94,71 +156,5 @@ export class GoogleMapContainer extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyC4xYqoJ2z76xP1hEu8B4AG9otpRL7mxec'
+  apiKey: 'AIzaSyDBa0d3xAgLCHNHQSKyE8JCKhMzUzDBZkY'
 })(GoogleMapContainer);
-
-/*
-renderAutoComplete() {
-    const { google, map } = this.props;
-
-    if (!google || !map) return;
-
-    const autocomplete = new google.maps.places.Autocomplete(this.autocomplete);
-    autocomplete.bindTo('bounds', map);
-
-    autocomplete.addListener('place_changed', () => {
-      const place = autocomplete.getPlace();
-
-      if (!place.geometry) return;
-
-      if (place.geometry.viewport) map.fitBounds(place.geometry.viewport);
-      else {
-        map.setCenter(place.geometry.location);
-        map.setZoom(17);
-      }
-
-      this.setState({ position: place.geometry.location });
-    });
-  }
-
-  render() {
-    const { position } = this.state;
-
-    return (
-      <div className={styles.flexWrapper}>
-        <div className={styles.left}>
-          <form onSubmit={this.onSubmit}>
-            <input
-              placeholder="Enter a location"
-              ref={ref => (this.autocomplete = ref)}
-              type="text"
-            />
-
-            <input className={styles.button} type="submit" value="Go" />
-          </form>
-
-          <div>
-            <div>Lat: {position && position.lat()}</div>
-            <div>Lng: {position && position.lng()}</div>
-          </div>
-        </div>
-
-        <div className={styles.right}>
-          <Map
-            {...this.props}
-            center={position}
-            centerAroundCurrentLocation={false}
-            containerStyle={{
-              height: '100vh',
-              position: 'relative',
-              width: '100%'
-            }}>
-            <Marker position={position} />
-          </Map>
-        </div>
-      </div>
-    );
-  }
-}
-
-*/

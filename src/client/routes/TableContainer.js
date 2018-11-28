@@ -29,7 +29,7 @@ class TableContainer extends Component {
     super(props);
     this.state = {
       events: [
-        { Title: 'Please list events by clicking above button', Location: '--', Date: '--' }
+        { Title: '--', Location: '--', Date: '--' }
       ]
     };
   }
