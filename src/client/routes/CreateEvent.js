@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import EventForm from './EventSteps/EventForm';
 import ChooseLocation from './EventSteps/ChooseLocation';
 import Review from './EventSteps/Review';
+import { assembleEvent } from '../../utils/localstorage';
+
 
 const styles = theme => ({
   appBar: {
@@ -28,7 +30,7 @@ const styles = theme => ({
     },
   },
   paper: {
-    //width: '50vw',
+    // width: '50vw',
     marginTop: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit * 3,
     padding: theme.spacing.unit * 1,
@@ -72,6 +74,13 @@ class CreateEvent extends React.Component {
   };
 
   handleNext = () => {
+    // at last step, submit
+    if (this.state.activeStep === steps.length - 1) {
+      console.log('last');
+      const eventdetails = assembleEvent();
+      console.log(eventdetails);
+    }
+    // at other steps, continue
     this.setState(state => ({
       activeStep: state.activeStep + 1,
     }));
