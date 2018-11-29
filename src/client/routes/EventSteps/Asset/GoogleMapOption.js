@@ -76,7 +76,7 @@ class GoogleMapContainer extends Component {
 
       // console.log(coordinates);
 
-      this.setStaate({ coordinates });
+      this.setState({ coordinates: coordinates });
 
       this.sendLocation(place.formatted_address, coordinates.lat, coordinates.lng);
     });
