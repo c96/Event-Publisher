@@ -154,7 +154,9 @@ class CreateEvent extends React.Component {
                   <Typography variant="subtitle1">
                     Your event has been submitted and is in the process of being posted.
                   </Typography>
-                  <Button variant="contained" color="primary" component={NavLink} to="/dashboard">View the Dashboard</Button>
+                  <Button variant="outlined" color="primary" component={NavLink} to="/dashboard">
+                    View the dashboard
+                  </Button>
                 </React.Fragment>
               ) : (
                 <React.Fragment>

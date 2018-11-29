@@ -10,24 +10,23 @@ class Scheduling extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      initialDate: new Date('December 31, 2018 12:00:00'),
-      savedDate: ""
+      savedDate: new Date('December 31, 2018 12:00:00')
     };
   }
 
   handleDateChange = (date) => {
-    //console.log(date.toString());
-    //this.setState({ savedDate: date });
+    
+    this.setState({ savedDate: date });
     saveLocalStorage('date', date);
   }
 
   render() {
-    const { initialDate } = this.state;
+    const { savedDate } = this.state;
     return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
         <DateTimePicker 
-        value={initialDate} 
+        value={savedDate} 
         onChange={this.handleDateChange} 
         label="Enter date and time"
         showTodayButton />
