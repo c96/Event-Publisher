@@ -11,6 +11,8 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import GoogleLogin from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 
 const styles = theme => ({
   main: {
@@ -46,6 +48,14 @@ const styles = theme => ({
 
 function SignIn(props) {
   const { classes } = props;
+  const responseFacebook = (response) => {
+    console.log(response);
+    //SAVE FACEBOOK ACCOUNT CREDENTIALS INTO A GLOBAL VAR??
+  }
+  const responseGoogle = (response) => {
+    console.log(response);
+    //SAVE GOOGLE ACCOUNT CREDENTIALS INTO A GLOBAL VAR??
+  }
 
   return (
     <main className={classes.main}>
@@ -78,6 +88,23 @@ function SignIn(props) {
           >
             Sign in
           </Button>
+          <br/>
+          <br/>
+          <FacebookLogin
+            appId="2144562765871862"
+            autoLoad={false}
+            fields="name,email,picture"
+            callback={responseFacebook}
+          />
+          <br/>
+          <br/>
+          <GoogleLogin
+            //clientId='231802929928-tmcah91jsbqct0od6jlrqm76r32gjsg0.apps.googleusercontent.com'
+            clientId= '281455273523-ud1k92s4al3lgephjr4eis1vjf1nvcef.apps.googleusercontent.com'
+            buttonText="Login with Google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+          />
         </form>
       </Paper>
     </main>
