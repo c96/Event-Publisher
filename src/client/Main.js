@@ -3,17 +3,17 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './routes/Home';
 import CreateEvent from './routes/CreateEvent';
 import Dashboard from './routes/Dashboard';
-import UploadVideo from './routes/UploadVideo';
+import Uploader from './routes/Uploader';
 import SignIn from './routes/SignIn';
 
 // Renders other components
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={Home}/>
+      <Route exact path="/" component={Home}/>
       <Route path='/sign-in' component={SignIn}/>
       <Route path='/create-event' component={CreateEvent}/>
-      <Route path='/upload-video' component={UploadVideo}/>
+      <Route path='/upload-video' component={Uploader}/>
       <Route path='/dashboard' component={Dashboard}/>
     </Switch>
   </main>
