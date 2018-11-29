@@ -29,7 +29,7 @@ function Review(props) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        upload video
+        Upload Video
         <UploadVideo />
       </Typography>
     </React.Fragment>

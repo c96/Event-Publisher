@@ -9,12 +9,12 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 import EventForm from './EventSteps/EventForm';
 import ChooseLocation from './EventSteps/ChooseLocation';
 import Review from './EventSteps/Review';
 import { assembleEvent } from '../../utils/localstorage';
-import axios from 'axios';
-
 
 const styles = theme => ({
   appBar: {
@@ -152,8 +152,11 @@ class CreateEvent extends React.Component {
                     Event Submitted.
                   </Typography>
                   <Typography variant="subtitle1">
-                    Your event has been submitted and is in the process of being posted. View the Dashboard
+                    Your event has been submitted and is in the process of being posted.
                   </Typography>
+                  <Button variant="outlined" color="primary" component={NavLink} to="/dashboard">
+                    View the dashboard
+                  </Button>
                 </React.Fragment>
               ) : (
                 <React.Fragment>

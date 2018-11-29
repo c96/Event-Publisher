@@ -36,7 +36,7 @@ Local event format
 
 
 function formatEvent(event) {
-  const str = `${event.title} on ${event.date}\n${event.desc}\nLocated at: ${event.location}`;
+  const str = `${event.title} on ${event.date} at ${event.time}\n${event.desc}\nLocated at: ${event.location}`;
   return str;
 }
 
