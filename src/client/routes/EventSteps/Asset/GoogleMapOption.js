@@ -15,9 +15,9 @@ class GoogleMapContainer extends Component {
     super(props);
 
     this.state = {
-        position: null,
-        streetAddress: "",
-        coordinates:  null
+      position: null,
+      streetAddress: '',
+      coordinates: null
     };
   }
 
@@ -64,7 +64,7 @@ class GoogleMapContainer extends Component {
 
 
       // this.setState({ streetAddress: place.formatted_address });
-     
+
       // console.log(place.formatted_address);
 
       this.setState({ position: place.geometry.location });
@@ -76,15 +76,20 @@ class GoogleMapContainer extends Component {
 
       // console.log(coordinates);
 
-      this.setState({ coordinates: coordinates });
+      this.setStaate({ coordinates });
 
       this.sendLocation(place.formatted_address, coordinates.lat, coordinates.lng);
     });
   }
 
   render() {
-
     const { position } = this.state;
+
+    const textareaStyle = {
+      padding: '5px',
+      margin: '5px',
+      resize: 'none'
+    };
 
     return (
       <React.Fragment>
@@ -95,6 +100,7 @@ class GoogleMapContainer extends Component {
                 placeholder="Street Address"
                 ref={ref => (this.autocomplete = ref)}
                 type="text"
+                style={textareaStyle}
               />
             </form>
           </Grid>
@@ -113,7 +119,8 @@ class GoogleMapContainer extends Component {
               position: 'relative',
               width: '45vw',
               height: '35vh'
-            }}>
+            }}
+          >
             <Marker position={position} />
           </Map>
         </Grid>
