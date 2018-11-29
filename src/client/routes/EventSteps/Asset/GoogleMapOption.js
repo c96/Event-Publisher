@@ -91,7 +91,7 @@ class GoogleMapContainer extends Component {
         <Grid container>
           <Grid item>
             <form onSubmit={this.onSubmit}>
-              <input
+              <textarea
                 placeholder="Street Address"
                 ref={ref => (this.autocomplete = ref)}
                 type="text"
