@@ -5,6 +5,7 @@ import CreateEvent from './routes/CreateEvent';
 import Dashboard from './routes/Dashboard';
 import UploadVideo from './routes/UploadVideo';
 import SignIn from './routes/SignIn';
+import ViewPlaylist from './routes/ViewPlaylist';
 
 // Renders other components
 const Main = () => (
@@ -15,6 +16,7 @@ const Main = () => (
       <Route path='/create-event' component={CreateEvent}/>
       <Route path='/upload-video' component={UploadVideo}/>
       <Route path='/dashboard' component={Dashboard}/>
+      <Route path='/view-playlist' component={ViewPlaylist}/>
     </Switch>
   </main>
 );
